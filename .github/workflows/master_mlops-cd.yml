@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}
+        tags: mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops3-cd:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -45,7 +45,7 @@ jobs:
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'mlops-cd'
+        app-name: 'mlops3-cd'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_d3979c9eb9964500abfc1bb7269fe4a1 }}
-        images: 'mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}'
+        images: 'mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops3-cd:${{ github.sha }}'
