@@ -22,7 +22,7 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v1
       with:
-        registry: https://mlopscd.azurecr.io/
+        registry: https://mlopscd3.azurecr.io/
         username: ${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}
         password: ${{ secrets.AzureAppService_ContainerPassword_104d15190c254f6d8ba547b6e44a7099 }}
 
@@ -30,7 +30,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: mlopscd.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}
+        tags: mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -48,4 +48,4 @@ jobs:
         app-name: 'mlops-cd'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_d3979c9eb9964500abfc1bb7269fe4a1 }}
-        images: 'mlopscd.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}'
+        images: 'mlopscd3.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_ba8cd04005f84086a67657430eff51ce }}/mlops-cd:${{ github.sha }}'
